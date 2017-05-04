@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   namespace :admin do
-    get '',to: 'dashboard#index', as: '/'
+    get '',to: 'dashboard#index'
+    get '/new', to: 'pages#new'
+    post '/new', to: 'pages#create'
+    resources :pages
   end
 
   get 'sessions/new'
@@ -16,5 +19,6 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
+  resources :pages, only: [:index]
   resources :users
 end
