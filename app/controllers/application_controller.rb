@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   
     def authorize
-      redirect_to root_url, alert: "Not authorized" if !current_user.admin?
+      if logged_in?
+        redirect_to root_url, alert: "Not authorized" if !current_user.admin?
+      else
+        redirect_to root_url, alert: "Not logged in"
+      end
     end
 end
