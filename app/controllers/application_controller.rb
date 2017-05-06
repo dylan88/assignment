@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
     def authorize
       if logged_in?
         redirect_to root_url, alert: "Not authorized" if !current_user.admin?
+      else
+        redirect_to root_url, alert: "Not logged in"
       end
-      redirect_to root_url, alert: "Not authorized"
     end
 end

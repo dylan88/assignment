@@ -37,7 +37,6 @@ class Admin::PagesController < ApplicationController
   # POST /page
   def create
     @page = Page.new(page_params)
-
     respond_to do |format|
       if @page.save
         format.html { redirect_to admin_pages_url, notice: 'Page was successfully created.' }
@@ -74,7 +73,7 @@ class Admin::PagesController < ApplicationController
   private
 
       def page_params
-        params.require(:page).permit(:title, :body)
+        params.require(:page).permit(:title, :body,:images_ids=>[])
       end
 end
 

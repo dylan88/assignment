@@ -6,5 +6,6 @@
   <%= f.label :body %>
   <%= f.text_area :body, class: 'form-control' %>
 
+  <%= f.collection_check_boxes(:images_ids, Image.all ,:id, :filename, { :prompt => "Please select"} ,{ :multiple => true})%> <br />
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>
