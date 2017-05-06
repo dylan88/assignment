@@ -47,6 +47,7 @@ class Admin::PagesController < ApplicationController
     end
   end
 
+  
   # PUT /pages/1
   def update
     @page = Page.find(params[:id])

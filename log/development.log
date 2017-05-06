@@ -12499,3 +12499,1038 @@ Processing by Admin::ImagesController#index as HTML
   Rendered layouts/_header.html.erb (1.9ms)
   Rendered layouts/_footer.html.erb (0.2ms)
 Completed 200 OK in 74ms (Views: 72.2ms | ActiveRecord: 0.6ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateAdminMemberships (20170506014556)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "admin_memberships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" text, "price" decimal, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170506014556"]]
+  [1m[36m (26.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (13.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (11.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateUsers (20170320191913)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170320191913"]]
+  [1m[35m (11.6ms)[0m  commit transaction
+Migrating to AddPasswordDigestToUsers (20170320192846)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "users" ADD "password_digest" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170320192846"]]
+  [1m[35m (12.0ms)[0m  commit transaction
+Migrating to AddIndexToUsersEmail (20170324133137)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170324133137"]]
+  [1m[36m (13.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddRememberDigestToUsers (20170503212217)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD "remember_digest" varchar[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170503212217"]]
+  [1m[36m (10.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddAdminToUsers (20170504021227)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "users" ADD "admin" boolean DEFAULT 'f'[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170504021227"]]
+  [1m[36m (13.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreatePages (20170504201607)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "pages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" text, "images_ids" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170504201607"]]
+  [1m[36m (11.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateImages (20170505154006)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "filename" varchar, "alt" varchar, "caption" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170505154006"]]
+  [1m[36m (13.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateMemberships (20170506014556)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "memberships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" text, "price" decimal, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170506014556"]]
+  [1m[36m (12.3ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('root@root.com') LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Admin"], ["email", "root@root.com"], ["password_digest", "$2a$10$weVvTdikyfyt3aqQcuj7PO8t7l3tgBsuxgYqHbakV36NekEg/EEvS"], ["admin", "t"], ["created_at", "2017-05-06 01:48:04.365367"], ["updated_at", "2017-05-06 01:48:04.365367"]]
+  [1m[36m (10.7ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-06 01:51:51 +0000
+  [1m[35mActiveRecord::SchemaMigration Load (3.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mUser Load (9.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (276.5ms)
+Completed 500 Internal Server Error in 965ms (ActiveRecord: 35.1ms)
+
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"admin/images"} missing required keys: [:id]):
+  app/views/admin/dashboard/index.html.erb:5:in `_app_views_admin_dashboard_index_html_erb__1374510986716818680_36568240'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (89.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (33.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (25.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (25.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (285.5ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-06 01:52:07 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (20.1ms)
+Completed 500 Internal Server Error in 33ms (ActiveRecord: 0.3ms)
+
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"admin/images"} missing required keys: [:id]):
+  app/views/admin/dashboard/index.html.erb:5:in `_app_views_admin_dashboard_index_html_erb__1374510986716818680_36568240'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (51.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (16.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (4.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (16.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (152.5ms)
+
+
+Started GET "/" for 37.228.239.208 at 2017-05-06 01:52:08 +0000
+Processing by StaticPagesController#home as HTML
+  Rendered static_pages/home.html.erb within layouts/application (47.6ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (4.6ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 763ms (Views: 757.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/admin/images" for 37.228.239.208 at 2017-05-06 01:52:09 +0000
+Processing by Admin::ImagesController#index as HTML
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images"
+  Rendered admin/images/index.html.erb within layouts/application (3.1ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (2.0ms)
+  Rendered layouts/_footer.html.erb (1.1ms)
+Completed 200 OK in 292ms (Views: 223.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 37.228.239.208 at 2017-05-06 01:52:09 +0000
+Processing by StaticPagesController#home as HTML
+  Rendered static_pages/home.html.erb within layouts/application (2.8ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.8ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 76ms (Views: 75.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 37.228.239.208 at 2017-05-06 01:52:09 +0000
+Processing by StaticPagesController#home as HTML
+  Rendered static_pages/home.html.erb within layouts/application (2.3ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 73ms (Views: 72.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/admin/memberships.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 37.228.239.208 at 2017-05-06 01:52:10 +0000
+
+
+Started GET "/assets/admin/memberships.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 37.228.239.208 at 2017-05-06 01:52:10 +0000
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-06 01:52:13 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (3.5ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.2ms)
+
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"admin/images"} missing required keys: [:id]):
+  app/views/admin/dashboard/index.html.erb:5:in `_app_views_admin_dashboard_index_html_erb__1374510986716818680_36568240'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (8.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (4.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (3.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (44.3ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-06 01:52:14 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (5.0ms)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.2ms)
+
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"admin/images"} missing required keys: [:id]):
+  app/views/admin/dashboard/index.html.erb:5:in `_app_views_admin_dashboard_index_html_erb__1374510986716818680_39222000'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (9.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (4.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (2.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (4.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (47.1ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-06 01:52:51 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (3.3ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.2ms)
+
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"admin/memberships"} missing required keys: [:id]):
+  app/views/admin/dashboard/index.html.erb:7:in `_app_views_admin_dashboard_index_html_erb__1374510986716818680_70112255433280'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (8.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (2.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (39.2ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-06 01:53:42 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (75.7ms)
+Completed 500 Internal Server Error in 80ms (ActiveRecord: 0.2ms)
+
+NameError (undefined local variable or method `admin_membership' for #<#<Class:0x00000004611198>:0x007f889f14ad28>
+Did you mean?  admin_membership_url):
+  app/views/admin/dashboard/index.html.erb:7:in `_app_views_admin_dashboard_index_html_erb__1374510986716818680_70112376377800'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (7.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (3.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (2.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (59.7ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-06 01:53:52 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (3.7ms)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.2ms)
+
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"admin/memberships"} missing required keys: [:id]):
+  app/views/admin/dashboard/index.html.erb:7:in `_app_views_admin_dashboard_index_html_erb__1374510986716818680_70112264677380'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (5.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (2.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (2.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (35.9ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-06 01:54:38 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (2.4ms)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.8ms)
+
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"admin/membership"} missing required keys: [:id]):
+  app/views/admin/dashboard/index.html.erb:7:in `_app_views_admin_dashboard_index_html_erb__1374510986716818680_70112264677380'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (5.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (2.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (34.2ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-06 01:55:02 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (20.6ms)
+Completed 500 Internal Server Error in 33ms (ActiveRecord: 0.9ms)
+
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"admin/memberships"} missing required keys: [:id]):
+  app/views/admin/dashboard/index.html.erb:7:in `_app_views_admin_dashboard_index_html_erb__1374510986716818680_70112264677380'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (11.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (2.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (0.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (37.7ms)
+
+
+Started GET "/admin/memberships" for 37.228.239.208 at 2017-05-06 01:55:09 +0000
+
+ActionController::RoutingError (undefined local variable or method `authorize' for Admin::MembershipsController:Class):
+  app/controllers/admin/memberships_controller.rb:3:in `<class:MembershipsController>'
+  app/controllers/admin/memberships_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (3.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/routing_error.html.erb within rescues/layout (108.7ms)
+
+
+Started GET "/admin/memberships" for 37.228.239.208 at 2017-05-06 01:55:20 +0000
+
+ActionController::RoutingError (undefined local variable or method `authorize' for Admin::MembershipsController:Class):
+  app/controllers/admin/memberships_controller.rb:3:in `<class:MembershipsController>'
+  app/controllers/admin/memberships_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (3.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/routing_error.html.erb within rescues/layout (32.0ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-06 01:57:13 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (3.0ms)
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 1.1ms)
+
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"admin/memberships"} missing required keys: [:id]):
+  app/views/admin/dashboard/index.html.erb:7:in `_app_views_admin_dashboard_index_html_erb__1374510986716818680_70112264677380'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (6.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (36.6ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-06 01:57:36 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 51ms (Views: 49.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/admin/memberships" for 37.228.239.208 at 2017-05-06 01:57:39 +0000
+
+ActionController::RoutingError (undefined local variable or method `authorize' for Admin::MembershipsController:Class):
+  app/controllers/admin/memberships_controller.rb:3:in `<class:MembershipsController>'
+  app/controllers/admin/memberships_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/routing_error.html.erb within rescues/layout (43.2ms)
+
+
+Started GET "/admin/memberships" for 37.228.239.208 at 2017-05-06 01:57:39 +0000
+
+ActionController::RoutingError (undefined local variable or method `authorize' for Admin::MembershipsController:Class):
+  app/controllers/admin/memberships_controller.rb:3:in `<class:MembershipsController>'
+  app/controllers/admin/memberships_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/routing_error.html.erb within rescues/layout (25.8ms)
+
+
+Started GET "/admin/memberships" for 37.228.239.208 at 2017-05-06 01:58:50 +0000
+Processing by Admin::MembershipsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mMembership Load (0.3ms)[0m  SELECT "memberships".* FROM "memberships"
+  Rendered admin/memberships/index.html.erb within layouts/application (4.6ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 61ms (Views: 49.3ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/admin/memberships/new" for 37.228.239.208 at 2017-05-06 01:58:56 +0000
+Processing by Admin::MembershipsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/memberships/_form.html.erb (40.8ms)
+  Rendered admin/memberships/new.html.erb within layouts/application (43.3ms)
+Completed 500 Internal Server Error in 71ms (ActiveRecord: 0.4ms)
+
+NoMethodError (undefined method `memberships_path' for #<#<Class:0x007f889f02a9e8>:0x007f8893024608>):
+  app/views/admin/memberships/_form.html.erb:1:in `_app_views_admin_memberships__form_html_erb___823515019553086725_70112255359840'
+  app/views/admin/memberships/new.html.erb:3:in `_app_views_admin_memberships_new_html_erb__4453926297740350371_70112279243560'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (7.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (4.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (2.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (2.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (60.5ms)
+
+
+Started GET "/admin/memberships/new" for 37.228.239.208 at 2017-05-06 01:58:58 +0000
+Processing by Admin::MembershipsController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/memberships/_form.html.erb (35.8ms)
+  Rendered admin/memberships/new.html.erb within layouts/application (38.6ms)
+Completed 500 Internal Server Error in 43ms (ActiveRecord: 0.2ms)
+
+NoMethodError (undefined method `memberships_path' for #<#<Class:0x007f889f02a9e8>:0x007f889e9da6d8>):
+  app/views/admin/memberships/_form.html.erb:1:in `_app_views_admin_memberships__form_html_erb___823515019553086725_70112376635240'
+  app/views/admin/memberships/new.html.erb:3:in `_app_views_admin_memberships_new_html_erb__4453926297740350371_70112376702100'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (8.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (4.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (81.0ms)
+
+
+Started GET "/admin/memberships/new" for 37.228.239.208 at 2017-05-06 01:59:20 +0000
+Processing by Admin::MembershipsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/memberships/_form.html.erb (38.7ms)
+  Rendered admin/memberships/new.html.erb within layouts/application (40.3ms)
+Completed 500 Internal Server Error in 46ms (ActiveRecord: 0.2ms)
+
+NoMethodError (undefined method `memberships_path' for #<#<Class:0x007f889f02a9e8>:0x007f8890ab5a48>):
+  app/views/admin/memberships/_form.html.erb:1:in `_app_views_admin_memberships__form_html_erb___823515019553086725_70112255359840'
+  app/views/admin/memberships/new.html.erb:3:in `_app_views_admin_memberships_new_html_erb__4453926297740350371_70112279243560'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (10.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (3.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (66.7ms)
+
+
+Started GET "/admin/memberships/new" for 37.228.239.208 at 2017-05-06 01:59:21 +0000
+Processing by Admin::MembershipsController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/memberships/_form.html.erb (38.1ms)
+  Rendered admin/memberships/new.html.erb within layouts/application (39.4ms)
+Completed 500 Internal Server Error in 44ms (ActiveRecord: 0.1ms)
+
+NoMethodError (undefined method `memberships_path' for #<#<Class:0x007f889f02a9e8>:0x007f889e3c9168>):
+  app/views/admin/memberships/_form.html.erb:1:in `_app_views_admin_memberships__form_html_erb___823515019553086725_70112376635240'
+  app/views/admin/memberships/new.html.erb:3:in `_app_views_admin_memberships_new_html_erb__4453926297740350371_70112376702100'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (10.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (4.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (61.3ms)
+
+
+Started GET "/admin/memberships/new" for 37.228.239.208 at 2017-05-06 02:01:44 +0000
+Processing by Admin::MembershipsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/memberships/_form.html.erb (82.9ms)
+  Rendered admin/memberships/new.html.erb within layouts/application (85.7ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (1.2ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 482ms (Views: 480.4ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/admin/memberships" for 37.228.239.208 at 2017-05-06 02:03:20 +0000
+Processing by Admin::MembershipsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"CZfNyd+Ot2kTkj0MG2wq/ggC8Tu7anzZnjSpn/4h7rgE6tRqVBV2fxiHjUxJcnsdI41U6XvGUwkuwpSQsv4zXg==", "membership"=>{"title"=>"test", "description"=>"ekfnjdzkehrjf", "price"=>"zefz"}, "commit"=>"Create Membership"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (4.5ms)[0m  INSERT INTO "memberships" ("title", "description", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "test"], ["description", "ekfnjdzkehrjf"], ["price", 0.0], ["created_at", "2017-05-06 02:03:20.504635"], ["updated_at", "2017-05-06 02:03:20.504635"]]
+  [1m[36m (12.7ms)[0m  [1mcommit transaction[0m
+Redirected to 
+Completed 500 Internal Server Error in 78ms (ActiveRecord: 17.6ms)
+
+NoMethodError (undefined method `membership_url' for #<Admin::MembershipsController:0x007f8890f1dea0>):
+  app/controllers/admin/memberships_controller.rb:32:in `block (2 levels) in create'
+  app/controllers/admin/memberships_controller.rb:30:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (36.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (17.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (6.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (13.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (111.1ms)
+
+
+Started POST "/admin/memberships" for 37.228.239.208 at 2017-05-06 02:04:29 +0000
+Processing by Admin::MembershipsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"CZfNyd+Ot2kTkj0MG2wq/ggC8Tu7anzZnjSpn/4h7rgE6tRqVBV2fxiHjUxJcnsdI41U6XvGUwkuwpSQsv4zXg==", "membership"=>{"title"=>"test", "description"=>"ekfnjdzkehrjf", "price"=>"zefz"}, "commit"=>"Create Membership"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "memberships" ("title", "description", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "test"], ["description", "ekfnjdzkehrjf"], ["price", 0.0], ["created_at", "2017-05-06 02:04:29.886063"], ["updated_at", "2017-05-06 02:04:29.886063"]]
+  [1m[36m (13.0ms)[0m  [1mcommit transaction[0m
+Redirected to 
+Completed 500 Internal Server Error in 56ms (ActiveRecord: 14.7ms)
+
+NoMethodError (undefined method `membership_url' for #<Admin::MembershipsController:0x007f88936a13c8>):
+  app/controllers/admin/memberships_controller.rb:31:in `block (2 levels) in create'
+  app/controllers/admin/memberships_controller.rb:29:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (5.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (38.9ms)
+
+
+Started POST "/admin/memberships" for 37.228.239.208 at 2017-05-06 02:05:22 +0000
+Processing by Admin::MembershipsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"CZfNyd+Ot2kTkj0MG2wq/ggC8Tu7anzZnjSpn/4h7rgE6tRqVBV2fxiHjUxJcnsdI41U6XvGUwkuwpSQsv4zXg==", "membership"=>{"title"=>"test", "description"=>"ekfnjdzkehrjf", "price"=>"zefz"}, "commit"=>"Create Membership"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "memberships" ("title", "description", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "test"], ["description", "ekfnjdzkehrjf"], ["price", 0.0], ["created_at", "2017-05-06 02:05:22.624255"], ["updated_at", "2017-05-06 02:05:22.624255"]]
+  [1m[36m (13.7ms)[0m  [1mcommit transaction[0m
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 15.9ms)
+
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"admin/memberships"} missing required keys: [:id]):
+  app/controllers/admin/memberships_controller.rb:31:in `block (2 levels) in create'
+  app/controllers/admin/memberships_controller.rb:29:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (6.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (3.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (40.4ms)
+
+
+Started POST "/admin/memberships" for 37.228.239.208 at 2017-05-06 02:07:02 +0000
+Processing by Admin::MembershipsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"CZfNyd+Ot2kTkj0MG2wq/ggC8Tu7anzZnjSpn/4h7rgE6tRqVBV2fxiHjUxJcnsdI41U6XvGUwkuwpSQsv4zXg==", "membership"=>{"title"=>"test", "description"=>"ekfnjdzkehrjf", "price"=>"zefz"}, "commit"=>"Create Membership"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "memberships" ("title", "description", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "test"], ["description", "ekfnjdzkehrjf"], ["price", 0.0], ["created_at", "2017-05-06 02:07:02.531949"], ["updated_at", "2017-05-06 02:07:02.531949"]]
+  [1m[36m (13.8ms)[0m  [1mcommit transaction[0m
+Completed 500 Internal Server Error in 35ms (ActiveRecord: 15.7ms)
+
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"admin/memberships"} missing required keys: [:id]):
+  app/controllers/admin/memberships_controller.rb:31:in `block (2 levels) in create'
+  app/controllers/admin/memberships_controller.rb:29:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (5.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (38.0ms)
+
+
+Started POST "/admin/memberships" for 37.228.239.208 at 2017-05-06 02:07:14 +0000
+Processing by Admin::MembershipsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"CZfNyd+Ot2kTkj0MG2wq/ggC8Tu7anzZnjSpn/4h7rgE6tRqVBV2fxiHjUxJcnsdI41U6XvGUwkuwpSQsv4zXg==", "membership"=>{"title"=>"test", "description"=>"ekfnjdzkehrjf", "price"=>"zefz"}, "commit"=>"Create Membership"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "memberships" ("title", "description", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "test"], ["description", "ekfnjdzkehrjf"], ["price", 0.0], ["created_at", "2017-05-06 02:07:14.968229"], ["updated_at", "2017-05-06 02:07:14.968229"]]
+  [1m[36m (12.3ms)[0m  [1mcommit transaction[0m
+Redirected to https://test-didoudou.c9users.io/admin/memberships
+Completed 302 Found in 33ms (ActiveRecord: 13.9ms)
+
+
+Started GET "/admin/memberships" for 37.228.239.208 at 2017-05-06 02:07:15 +0000
+Processing by Admin::MembershipsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/memberships/index.html.erb within layouts/application (3.7ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.2ms)
+
+NoMethodError (undefined method `each' for nil:NilClass):
+  app/views/admin/memberships/index.html.erb:16:in `_app_views_admin_memberships_index_html_erb__1413511338313848482_70112380091580'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (6.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (34.6ms)
+
+
+Started GET "/admin/memberships" for 37.228.239.208 at 2017-05-06 02:09:16 +0000
+Processing by Admin::MembershipsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mMembership Load (0.3ms)[0m  SELECT "memberships".* FROM "memberships"
+  Rendered admin/memberships/index.html.erb within layouts/application (52.8ms)
+Completed 500 Internal Server Error in 58ms (ActiveRecord: 0.5ms)
+
+NoMethodError (undefined method `edit_membership_path' for #<#<Class:0x00000004e6ba28>:0x007f889e8f4a98>
+Did you mean?  edit_admin_membership_path
+               admin_membership_path
+               edit_user_path
+               admin_memberships_path):
+  app/views/admin/memberships/index.html.erb:22:in `block in _app_views_admin_memberships_index_html_erb__1413511338313848482_70112255137040'
+  app/views/admin/memberships/index.html.erb:16:in `_app_views_admin_memberships_index_html_erb__1413511338313848482_70112255137040'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (6.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (3.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (62.2ms)
+
+
+Started GET "/admin/memberships" for 37.228.239.208 at 2017-05-06 02:09:26 +0000
+Processing by Admin::MembershipsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mMembership Load (0.2ms)[0m  SELECT "memberships".* FROM "memberships"
+  Rendered admin/memberships/index.html.erb within layouts/application (3.3ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 53ms (Views: 51.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin/memberships/new" for 37.228.239.208 at 2017-05-06 02:09:29 +0000
+Processing by Admin::MembershipsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/memberships/_form.html.erb (4.4ms)
+  Rendered admin/memberships/new.html.erb within layouts/application (7.0ms)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.2ms)
+
+ArgumentError (First argument in form cannot contain nil or be empty):
+  app/views/admin/memberships/_form.html.erb:1:in `_app_views_admin_memberships__form_html_erb___823515019553086725_70112266194260'
+  app/views/admin/memberships/new.html.erb:3:in `_app_views_admin_memberships_new_html_erb__4453926297740350371_70112255967620'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (6.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (3.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (39.0ms)
+
+
+Started GET "/admin/memberships/new" for 37.228.239.208 at 2017-05-06 02:09:30 +0000
+Processing by Admin::MembershipsController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/memberships/_form.html.erb (2.5ms)
+  Rendered admin/memberships/new.html.erb within layouts/application (3.7ms)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.1ms)
+
+ArgumentError (First argument in form cannot contain nil or be empty):
+  app/views/admin/memberships/_form.html.erb:1:in `_app_views_admin_memberships__form_html_erb___823515019553086725_70112368999340'
+  app/views/admin/memberships/new.html.erb:3:in `_app_views_admin_memberships_new_html_erb__4453926297740350371_70112368447500'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (6.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (4.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (37.6ms)
+
+
+Started GET "/admin/memberships/new" for 37.228.239.208 at 2017-05-06 02:10:15 +0000
+Processing by Admin::MembershipsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/memberships/_form.html.erb (4.4ms)
+  Rendered admin/memberships/new.html.erb within layouts/application (6.0ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.2ms)
+
+ArgumentError (First argument in form cannot contain nil or be empty):
+  app/views/admin/memberships/_form.html.erb:1:in `_app_views_admin_memberships__form_html_erb___823515019553086725_70112266194260'
+  app/views/admin/memberships/new.html.erb:3:in `_app_views_admin_memberships_new_html_erb__4453926297740350371_70112255967620'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (6.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (4.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (37.7ms)
+
+
+Started GET "/admin/memberships/new" for 37.228.239.208 at 2017-05-06 02:10:16 +0000
+Processing by Admin::MembershipsController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/memberships/_form.html.erb (2.4ms)
+  Rendered admin/memberships/new.html.erb within layouts/application (3.5ms)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.1ms)
+
+ArgumentError (First argument in form cannot contain nil or be empty):
+  app/views/admin/memberships/_form.html.erb:1:in `_app_views_admin_memberships__form_html_erb___823515019553086725_70112368999340'
+  app/views/admin/memberships/new.html.erb:3:in `_app_views_admin_memberships_new_html_erb__4453926297740350371_70112368447500'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (6.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (34.4ms)
+
+
+Started GET "/admin/memberships/new" for 37.228.239.208 at 2017-05-06 02:10:45 +0000
+Processing by Admin::MembershipsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/memberships/_form.html.erb (3.5ms)
+  Rendered admin/memberships/new.html.erb within layouts/application (4.7ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 58ms (Views: 56.8ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/admin/memberships" for 37.228.239.208 at 2017-05-06 02:10:57 +0000
+Processing by Admin::MembershipsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ZPhvYcoptY7p84+dZdm7ANuMFIYcqapU9Go2pY96LxBphXbCQbJ0mOLmP903x+rj8AOxVNwFhYREnAuqw6Xy9g==", "membership"=>{"title"=>"test2", "description"=>"desc2", "price"=>"10"}, "commit"=>"Create Membership"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "memberships" ("title", "description", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "test2"], ["description", "desc2"], ["price", 10.0], ["created_at", "2017-05-06 02:10:57.114136"], ["updated_at", "2017-05-06 02:10:57.114136"]]
+  [1m[36m (12.0ms)[0m  [1mcommit transaction[0m
+Redirected to https://test-didoudou.c9users.io/admin/memberships
+Completed 302 Found in 16ms (ActiveRecord: 12.4ms)
+
+
+Started GET "/admin/memberships" for 37.228.239.208 at 2017-05-06 02:10:57 +0000
+Processing by Admin::MembershipsController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mMembership Load (0.3ms)[0m  [1mSELECT "memberships".* FROM "memberships"[0m
+  Rendered admin/memberships/index.html.erb within layouts/application (4.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 65ms (Views: 62.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/admin/memberships/6" for 37.228.239.208 at 2017-05-06 02:11:01 +0000
+Processing by Admin::MembershipsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[35mMembership Load (0.3ms)[0m  SELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1  [["id", "6"]]
+  Rendered admin/memberships/show.html.erb within layouts/application (4.9ms)
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.4ms)
+
+NoMethodError (undefined method `title' for nil:NilClass):
+  app/views/admin/memberships/show.html.erb:5:in `_app_views_admin_memberships_show_html_erb__3769290533531601222_70112254332780'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (6.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (3.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (36.6ms)
+
+
+Started GET "/admin/memberships/6" for 37.228.239.208 at 2017-05-06 02:11:02 +0000
+Processing by Admin::MembershipsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mMembership Load (0.2ms)[0m  [1mSELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1[0m  [["id", "6"]]
+  Rendered admin/memberships/show.html.erb within layouts/application (4.8ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.3ms)
+
+NoMethodError (undefined method `title' for nil:NilClass):
+  app/views/admin/memberships/show.html.erb:5:in `_app_views_admin_memberships_show_html_erb__3769290533531601222_70112257454360'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (6.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (37.9ms)
+
+
+Started GET "/admin/memberships/6/edit" for 37.228.239.208 at 2017-05-06 02:11:07 +0000
+Processing by Admin::MembershipsController#edit as HTML
+  Parameters: {"id"=>"6"}
+  [1m[35mMembership Load (0.2ms)[0m  SELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/memberships/_form.html.erb (3.3ms)
+  Rendered admin/memberships/edit.html.erb within layouts/application (6.8ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 68ms (Views: 66.4ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/admin/memberships/6" for 37.228.239.208 at 2017-05-06 02:11:13 +0000
+Processing by Admin::MembershipsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"51JVV7P/4Kr2VUOKmMbCsVfcPOlSHa1ing2A5dZMxtjqL0z0OGQhvP1A88rK2JNSfFOZO5KxgrIu+73qmpMbPg==", "membership"=>{"title"=>"test2", "description"=>"desc3", "price"=>"10.0"}, "commit"=>"Update Membership", "id"=>"6"}
+  [1m[35mMembership Load (0.2ms)[0m  SELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "memberships" SET "description" = ?, "updated_at" = ? WHERE "memberships"."id" = ?[0m  [["description", "desc3"], ["updated_at", "2017-05-06 02:11:13.525175"], ["id", 6]]
+  [1m[35m (11.6ms)[0m  commit transaction
+Redirected to https://test-didoudou.c9users.io/admin/memberships/6
+Completed 302 Found in 18ms (ActiveRecord: 12.3ms)
+
+
+Started GET "/admin/memberships/6" for 37.228.239.208 at 2017-05-06 02:11:13 +0000
+Processing by Admin::MembershipsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mMembership Load (0.2ms)[0m  [1mSELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1[0m  [["id", "6"]]
+  Rendered admin/memberships/show.html.erb within layouts/application (3.5ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.3ms)
+
+NoMethodError (undefined method `title' for nil:NilClass):
+  app/views/admin/memberships/show.html.erb:5:in `_app_views_admin_memberships_show_html_erb__3769290533531601222_70112257454360'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (28.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (59.6ms)
+
+
+Started DELETE "/admin/memberships/6" for 37.228.239.208 at 2017-05-06 02:11:30 +0000
+Processing by Admin::MembershipsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"fN2LGvghOxwIy/7Hy7C4uUJGPk0MZ6TxVkq9uxaLC/lxoJK5c7r6CgPeToeZrulaacmbn8zLiyHmvIC0WlTWHw==", "id"=>"6"}
+  [1m[35mMembership Load (0.2ms)[0m  SELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "memberships" WHERE "memberships"."id" = ?[0m  [["id", 6]]
+  [1m[35m (13.9ms)[0m  commit transaction
+Completed 500 Internal Server Error in 40ms (ActiveRecord: 14.6ms)
+
+NameError (undefined local variable or method `memberships_url' for #<Admin::MembershipsController:0x007f8890ac88c8>
+Did you mean?  membership_params):
+  app/controllers/admin/memberships_controller.rb:55:in `block (2 levels) in destroy'
+  app/controllers/admin/memberships_controller.rb:54:in `destroy'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (4.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (3.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (40.0ms)
+
+
+Started DELETE "/admin/memberships/6" for 37.228.239.208 at 2017-05-06 02:12:09 +0000
+Processing by Admin::MembershipsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"fN2LGvghOxwIy/7Hy7C4uUJGPk0MZ6TxVkq9uxaLC/lxoJK5c7r6CgPeToeZrulaacmbn8zLiyHmvIC0WlTWHw==", "id"=>"6"}
+  [1m[36mMembership Load (0.2ms)[0m  [1mSELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1[0m  [["id", 6]]
+Completed 404 Not Found in 6ms (ActiveRecord: 1.0ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Membership with 'id'=6):
+  app/controllers/admin/memberships_controller.rb:62:in `set_membership'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (4.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (62.5ms)
+
+
+Started GET "/admin/memberships" for 37.228.239.208 at 2017-05-06 02:12:17 +0000
+Processing by Admin::MembershipsController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mMembership Load (0.3ms)[0m  [1mSELECT "memberships".* FROM "memberships"[0m
+  Rendered admin/memberships/index.html.erb within layouts/application (5.5ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 69ms (Views: 58.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/admin/memberships.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 37.228.239.208 at 2017-05-06 02:12:17 +0000
+
+
+Started GET "/assets/images.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 37.228.239.208 at 2017-05-06 02:12:17 +0000
+
+
+Started GET "/assets/pages.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 37.228.239.208 at 2017-05-06 02:12:17 +0000
+
+
+Started GET "/assets/admin/dashboard.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 37.228.239.208 at 2017-05-06 02:12:17 +0000
+
+
+Started GET "/assets/static_pages.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 37.228.239.208 at 2017-05-06 02:12:17 +0000
+
+
+Started GET "/assets/users.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 37.228.239.208 at 2017-05-06 02:12:17 +0000
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 37.228.239.208 at 2017-05-06 02:12:17 +0000
+
+
+Started GET "/assets/custom.self-7db79c3e14e3469a355979ae6be141e7ab3c0e14d539ebcaa4fbf88f0f697881.css?body=1" for 37.228.239.208 at 2017-05-06 02:12:18 +0000
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 37.228.239.208 at 2017-05-06 02:12:18 +0000
+
+
+Started GET "/assets/scaffolds.self-5d87d38a4db7a147674c2cd755f1e0de52ecfee5af53b0c99ad54a594cf020d5.css?body=1" for 37.228.239.208 at 2017-05-06 02:12:18 +0000
+
+
+Started GET "/assets/sessions.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 37.228.239.208 at 2017-05-06 02:12:18 +0000
+
+
+Started GET "/assets/bootstrap.self-b38817c3e3a3049abb1fc08dd6ae448b23330f8453226efdb074710209474f75.js?body=1" for 37.228.239.208 at 2017-05-06 02:12:18 +0000
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for 37.228.239.208 at 2017-05-06 02:12:18 +0000
+
+
+Started GET "/assets/turbolinks.self-0a993f73466e2d0b5abaddcfe64e28fc7be51a14bf4bdd9774b57832c76b5c37.js?body=1" for 37.228.239.208 at 2017-05-06 02:12:18 +0000
+
+
+Started GET "/assets/images.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 37.228.239.208 at 2017-05-06 02:12:18 +0000
+
+
+Started GET "/assets/sessions.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 37.228.239.208 at 2017-05-06 02:12:19 +0000
+
+
+Started GET "/assets/static_pages.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 37.228.239.208 at 2017-05-06 02:12:19 +0000
+
+
+Started GET "/assets/admin/dashboard.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 37.228.239.208 at 2017-05-06 02:12:19 +0000
+
+
+Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 37.228.239.208 at 2017-05-06 02:12:19 +0000
+
+
+Started GET "/assets/admin/memberships.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 37.228.239.208 at 2017-05-06 02:12:19 +0000
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for 37.228.239.208 at 2017-05-06 02:12:19 +0000
+
+
+Started GET "/assets/pages.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 37.228.239.208 at 2017-05-06 02:12:19 +0000
+
+
+Started DELETE "/admin/memberships/5" for 37.228.239.208 at 2017-05-06 02:12:23 +0000
+Processing by Admin::MembershipsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"AXKUusyIBiCVeI8S5HQrLPylVuNbvYfTmUpsEuIoQAAMD40ZRxPHNp5tP1K2anrP1yrzMZsRqAMpvFEdrved5g==", "id"=>"5"}
+  [1m[35mMembership Load (0.2ms)[0m  SELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "memberships" WHERE "memberships"."id" = ?[0m  [["id", 5]]
+  [1m[35m (11.1ms)[0m  commit transaction
+Redirected to https://test-didoudou.c9users.io/admin/memberships
+Completed 302 Found in 15ms (ActiveRecord: 11.8ms)
+
+
+Started GET "/admin/memberships" for 37.228.239.208 at 2017-05-06 02:12:23 +0000
+Processing by Admin::MembershipsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mMembership Load (0.2ms)[0m  SELECT "memberships".* FROM "memberships"
+  Rendered admin/memberships/index.html.erb within layouts/application (2.5ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 72ms (Views: 70.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin/memberships/4/edit" for 37.228.239.208 at 2017-05-06 02:12:26 +0000
+Processing by Admin::MembershipsController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mMembership Load (0.2ms)[0m  [1mSELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/memberships/_form.html.erb (3.2ms)
+  Rendered admin/memberships/edit.html.erb within layouts/application (6.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 125ms (Views: 123.6ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/admin/memberships/4" for 37.228.239.208 at 2017-05-06 02:12:34 +0000
+Processing by Admin::MembershipsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MtDrgxM7xC8GYaFvLgf7HdNmwVaofRnbfYS5JkQv5Jw/rfIgmKAFOQ10ES98Gar++OlkhGjRNgvNcoQpCPA5eg==", "membership"=>{"title"=>"test", "description"=>"updated", "price"=>"0.0"}, "commit"=>"Update Membership", "id"=>"4"}
+  [1m[36mMembership Load (0.2ms)[0m  [1mSELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "memberships" SET "description" = ?, "updated_at" = ? WHERE "memberships"."id" = ?  [["description", "updated"], ["updated_at", "2017-05-06 02:12:34.006619"], ["id", 4]]
+  [1m[36m (10.9ms)[0m  [1mcommit transaction[0m
+Redirected to https://test-didoudou.c9users.io/admin/memberships
+Completed 302 Found in 16ms (ActiveRecord: 11.6ms)
+
+
+Started GET "/admin/memberships" for 37.228.239.208 at 2017-05-06 02:12:34 +0000
+Processing by Admin::MembershipsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mMembership Load (0.2ms)[0m  [1mSELECT "memberships".* FROM "memberships"[0m
+  Rendered admin/memberships/index.html.erb within layouts/application (2.5ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 104ms (Views: 101.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin/memberships/4" for 37.228.239.208 at 2017-05-06 02:12:42 +0000
+Processing by Admin::MembershipsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mMembership Load (0.2ms)[0m  SELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1  [["id", "4"]]
+  Rendered admin/memberships/show.html.erb within layouts/application (4.1ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.3ms)
+
+NoMethodError (undefined method `title' for nil:NilClass):
+  app/views/admin/memberships/show.html.erb:5:in `_app_views_admin_memberships_show_html_erb__3769290533531601222_70112254332780'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (24.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (4.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (4.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (75.8ms)
+
+
+Started GET "/admin/memberships/4" for 37.228.239.208 at 2017-05-06 02:12:42 +0000
+Processing by Admin::MembershipsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mMembership Load (0.1ms)[0m  [1mSELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1[0m  [["id", "4"]]
+  Rendered admin/memberships/show.html.erb within layouts/application (3.0ms)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.2ms)
+
+NoMethodError (undefined method `title' for nil:NilClass):
+  app/views/admin/memberships/show.html.erb:5:in `_app_views_admin_memberships_show_html_erb__3769290533531601222_70112257454360'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (12.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (5.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (173.9ms)
+
+
+Started GET "/admin/memberships/4" for 37.228.239.208 at 2017-05-06 02:13:12 +0000
+Processing by Admin::MembershipsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mMembership Load (0.2ms)[0m  SELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1  [["id", "4"]]
+  Rendered admin/memberships/show.html.erb within layouts/application (1.8ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 162ms (Views: 158.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admin/memberships" for 37.228.239.208 at 2017-05-06 02:13:15 +0000
+Processing by Admin::MembershipsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mMembership Load (0.3ms)[0m  SELECT "memberships".* FROM "memberships"
+  Rendered admin/memberships/index.html.erb within layouts/application (5.2ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 113ms (Views: 111.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin/memberships/4" for 37.228.239.208 at 2017-05-06 02:13:17 +0000
+Processing by Admin::MembershipsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mMembership Load (0.2ms)[0m  [1mSELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1[0m  [["id", "4"]]
+  Rendered admin/memberships/show.html.erb within layouts/application (1.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 68ms (Views: 65.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admin/memberships/4/edit" for 37.228.239.208 at 2017-05-06 02:13:18 +0000
+Processing by Admin::MembershipsController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mMembership Load (0.2ms)[0m  SELECT  "memberships".* FROM "memberships" WHERE "memberships"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/memberships/_form.html.erb (2.3ms)
+  Rendered admin/memberships/edit.html.erb within layouts/application (4.1ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 167ms (Views: 165.8ms | ActiveRecord: 0.2ms)
