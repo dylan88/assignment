@@ -1,0 +1,12 @@
+<h1>Membership</h1>
+
+<p>Put a description here</p>
+
+<h1>Membership options</h1>
+<% @memberships.each do |membership| %>
+  <div>
+    <h2><%= membership.title %></h2>
+    <%= simple_format membership.description %>
+    <%= membership.price %>
+  </div>
+<% end %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   namespace :admin do
     get '',to: 'dashboard#index'
     get '/new', to: 'pages#new'
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
     resources :pages
     resources :images
     resources :memberships
+    get '/contact', to: 'contact#index'
   end
 
   get 'sessions/new'
@@ -15,12 +17,14 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get 'help' => 'static_pages#help'
   get 'about' => 'static_pages#about'
-  get 'contact' => 'static_pages#contact'
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   resources :pages, only: [:index]
+  resources :memberships, only: [:index]
   resources :users
+  get  '/contact',  to: 'contact#new'
+  post '/contact',  to: 'contact#create'
 end

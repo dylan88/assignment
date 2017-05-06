@@ -4,7 +4,7 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Help", help_path %></li>
+        <li><%= link_to "Membership", memberships_path %></li>
         <% if logged_in? %>
           <% if is_admin? %>
             <li><%= link_to "Dashboard", admin_path %></li>

@@ -1,5 +1,7 @@
 class Admin::ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
+  before_filter :authorize
+
   # GET /images
   # GET /images.json
   def index
