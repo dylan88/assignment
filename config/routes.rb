@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get '/new', to: 'pages#new'
     post '/new', to: 'pages#create'
     resources :pages
+    resources :courses
   end
 
   get 'sessions/new'
