@@ -1,5 +1,6 @@
 class Admin::CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :authorize
 
   # GET /courses
   # GET /courses.json
