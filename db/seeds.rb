@@ -11,3 +11,12 @@ User.create!(name:  "Admin",
              password:              "foobar",
              password_confirmation: "foobar",
              admin: true)
+             
+             
+Course.create!(name: "Yoga",
+                instructor: "Melissa",
+                description: "Learn to relax with one of the best teachers in western Europe ! ",
+                start_date: "18-05-2017",
+                hour: "17:00:00",
+                day: 4)
+                

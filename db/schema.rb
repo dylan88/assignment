@@ -39,10 +39,9 @@ ActiveRecord::Schema.define(version: 20170507182036) do
     t.string   "description"
     t.date     "start_date"
     t.time     "hour"
-    t.string   "participants"
     t.integer  "day"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "images", force: :cascade do |t|

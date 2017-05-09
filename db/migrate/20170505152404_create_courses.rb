@@ -6,7 +6,6 @@ class CreateCourses < ActiveRecord::Migration
       t.string :description
       t.date :start_date
       t.time :hour
-      t.string :participants
       t.integer :day
 
       t.timestamps null: false

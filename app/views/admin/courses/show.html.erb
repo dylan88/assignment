@@ -32,7 +32,7 @@
 
 <p>
   <strong>Participants:</strong>
-  <%= link_to 'Manage', admin_bookings_path %>
+  <%= link_to 'Manage', admin_bookings_path(:course=> @course.name, :day=> @course.day) %>
 </p>
 
 <%= link_to 'Edit', edit_admin_course_path(@course) %> |
