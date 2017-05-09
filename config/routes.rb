@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
 
+  resources :bookings
   namespace :admin do
     get '',to: 'dashboard#index'
     get '/new', to: 'pages#new'
     post '/new', to: 'pages#create'
     resources :pages
     resources :courses
-
+    resources :bookings
     resources :images
+    delete '/bookings', to: 'bookings#destroy'
+    get '/bookings', to: 'bookings#update'
     resources :memberships
     get '/contact', to: 'contact#index'
   end
@@ -25,6 +28,9 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   resources :pages, only: [:index, :show]
+
+  resources :courses
+  resources :bookings
   resources :memberships, only: [:index]
   resources :users
   get  '/contact',  to: 'contact#new'
