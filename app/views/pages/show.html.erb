@@ -2,14 +2,22 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @page.title %>
+  <h1><%= @page.title %></h1>
 </p>
 
 <p>
-  <b>Body:</b>
   <%= @page.body %>
 </p>
 
+<div class="container_gallery">
+<% @images_ids.each do |img|%>
+  <% if !img.empty? %>
+    <div class = "gallery">
+      <p><%= image_tag Image.find(img).filename, alt:  Image.find(img).alt %></p>
+      <div class="desc"><%= Image.find(img).caption %></div>
+    </div>
+  <% end %>
+<% end %>
+</div>
 
 <%= link_to 'Back', pages_path %>

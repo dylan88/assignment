@@ -14,6 +14,15 @@
 				</h2>
 				<%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
 				</div>
-				<%= link_to image_tag("rails.png", alt: "Rails logo"), 'http://rubyonrails.org/' %>
+				<div class="container_gallery">
+				<% @images_ids.each do |img|%>
+				  <% if !img.empty? %>
+				    <div class = "gallery">
+				      <p><%= image_tag Image.find(img).filename, alt:  Image.find(img).alt %></p>
+				      <div class="desc"><%= Image.find(img).caption %></div>
+				    </div>
+				  <% end %>
+				<% end %>
+				</div>
 		</body>
 	</html>

@@ -3,6 +3,6 @@
 <% @pages.each do |page| %>
   <div>
     <h2><%= page.title %></h2>
-    <%= link_to 'Show', pages_path(page) %>
+    <%= link_to 'Go to this page', page_path(page) %>
   </div>
 <% end %>

@@ -6,7 +6,7 @@
   <%= f.label :body %>
   <%= f.text_area :body, class: 'form-control' %>
   <div class="checkboxes">
-    <p><b>Choose your images</b></p>
+    <p><b>Choose your images (You need to upload images first in <%= link_to 'Manage Images', admin_images_path %>)</b></p>
   <%= f.collection_check_boxes(:images_ids, Image.all ,:id, :name, { :prompt => "Please select"} ,{ :multiple => true})%> <br />
   </div>
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>

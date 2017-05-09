@@ -11,3 +11,18 @@ User.create!(name:  "Admin",
              password:              "foobar",
              password_confirmation: "foobar",
              admin: true)
+             
+Image.create!(filename: Rails.root.join("public/uploads/image/filename/1/1.jpg").open,
+              alt: "training",
+              caption: "",
+              name: "training")
+              
+Image.create!(filename: Rails.root.join("public/uploads/image/filename/2/2.jpg").open,
+              alt: "training",
+              caption: "",
+              name: "training")
+
+Image.create!(filename: Rails.root.join("public/uploads/image/filename/3/3.jpg").open,
+              alt: "training",
+              caption: "",
+              name: "training")
