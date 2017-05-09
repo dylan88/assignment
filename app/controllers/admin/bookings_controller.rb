@@ -7,6 +7,7 @@ class Admin::BookingsController < ApplicationController
   def index
     @course = params[:course]
     @bookings = Booking.select("*").where(course: @course)
+
   end
 
   # GET /bookings/1

@@ -34,3 +34,10 @@ Course.create!(name: "Yoga",
                 hour: "17:00:00",
                 day: 4)
                 
+Booking.create!(course: "Yoga",
+                day: 4,
+                name: "Phillip",
+                email: "Lil_Pip@yahoo.com",
+                phone: "+336 45737 7700",
+                membership: "4 8 15 16 23 42")
+                
