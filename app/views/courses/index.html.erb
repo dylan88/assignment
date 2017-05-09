@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Courses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start date </th>
+      <th>Name </th>
+      <th>Day </th>
+      <th>Time</th>
+      <th>Instructor </th>
+      <th>Description </th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.start_date %></td>
+        <td><%= course.name %> </td>
+        <td><%= course.day%> </td>
+        <td><%= course.hour.strftime("%I:%M%p")%></td>
+        <td><%= course.instructor %></td>
+        <td><%= course.description %></td>
+        <td><%= link_to 'Show', course_path(course) %></td>
+        <td><%= link_to 'Suscribe', new_booking_path(:course=> course.name, :day=> course.day) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
