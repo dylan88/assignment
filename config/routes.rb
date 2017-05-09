@@ -7,8 +7,10 @@ Rails.application.routes.draw do
     post '/new', to: 'pages#create'
     resources :pages
     resources :courses
-
+    resources :bookings
     resources :images
+    delete '/bookings', to: 'bookings#destroy'
+    get '/bookings', to: 'bookings#update'
     resources :memberships
     get '/contact', to: 'contact#index'
   end

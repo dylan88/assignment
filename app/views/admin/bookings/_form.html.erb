@@ -13,15 +13,11 @@
 
   <div class="field">
     <%= f.label :course %><br>
-    <%= f.text_field :course %>
+    <%= f.text_field :course, :readonly=> true %>
   </div>
   <div class="field">
     <%= f.label :day %><br>
-    <%= f.number_field :day %>
-  </div>
-  <div class="field">
-    <%= f.label :hour %><br>
-    <%= f.time_select :hour %>
+    <%= f.text_field :day, :readonly=> true %>
   </div>
   <div class="field">
     <%= f.label :name %><br>

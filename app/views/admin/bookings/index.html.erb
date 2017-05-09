@@ -7,7 +7,6 @@
     <tr>
       <th>Course</th>
       <th>Day</th>
-      <th>Hour</th>
       <th>Name</th>
       <th>Email</th>
       <th>Phone</th>
@@ -21,14 +20,13 @@
       <tr>
         <td><%= booking.course %></td>
         <td><%= booking.day %></td>
-        <td><%= booking.hour %></td>
         <td><%= booking.name %></td>
         <td><%= booking.email %></td>
         <td><%= booking.phone %></td>
         <td><%= booking.membership %></td>
-        <td><%= link_to 'Show', booking %></td>
-        <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
-        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', admin_booking_path(booking) %></td>
+        <td><%= link_to 'Edit', edit_admin_booking_path(booking) %></td>
+        <td><%= link_to 'Destroy', admin_booking_path(booking), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Booking', new_booking_path %>
+<%= link_to 'Back', admin_courses_path %>
