@@ -7,7 +7,7 @@ class Admin::BookingsController < ApplicationController
   def index
     @course = params[:course]
     @day = params[:day]
-    @bookings = Booking.select("*").where("course = Booking.name", "day = Booking.day")
+    @bookings = Booking.select("* WHERE Booking.name = " + @course + " AND Booking.day = " + @day)
   end
 
   # GET /bookings/1
