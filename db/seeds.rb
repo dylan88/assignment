@@ -26,3 +26,11 @@ Image.create!(filename: Rails.root.join("public/uploads/image/filename/3/3.jpg")
               alt: "training",
               caption: "",
               name: "training")
+
+Course.create!(name: "Yoga",
+                instructor: "Melissa",
+                description: "Learn to relax with one of the best teachers in western Europe ! ",
+                start_date: "18-05-2017",
+                hour: "17:00:00",
+                day: 4)
+                
