@@ -6,8 +6,7 @@ class Admin::BookingsController < ApplicationController
   # GET /bookings.json
   def index
     @course = params[:course]
-    @day = params[:day]
-    @bookings = Booking.select("*").where("course = Booking.name", "day = Booking.day")
+    @bookings = Booking.select("*").where(course: @course)
   end
 
   # GET /bookings/1
