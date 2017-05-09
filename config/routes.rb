@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-
-  resources :bookings
   namespace :admin do
     get '',to: 'dashboard#index'
     get '/new', to: 'pages#new'
@@ -10,7 +8,6 @@ Rails.application.routes.draw do
     resources :bookings
     resources :images
     delete '/bookings', to: 'bookings#destroy'
-    get '/bookings', to: 'bookings#update'
     resources :memberships
     get '/contact', to: 'contact#index'
   end

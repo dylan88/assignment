@@ -19,9 +19,6 @@ class BookingsController < ApplicationController
     @day = params[:day]
   end
 
-  # GET /bookings/1/edit
-  def edit
-  end
 
   # POST /bookings
   # POST /bookings.json
@@ -39,14 +36,4 @@ class BookingsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_booking
-      @booking = Booking.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def booking_params
-      params.require(:booking).permit(:course, :day, :name, :email, :phone, :membership)
-    end
 end

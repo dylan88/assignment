@@ -7,7 +7,6 @@ class Admin::BookingsController < ApplicationController
   def index
     @course = params[:course]
     @bookings = Booking.select("*").where(course: @course)
-
   end
 
   # GET /bookings/1
@@ -24,6 +23,7 @@ class Admin::BookingsController < ApplicationController
 
   # GET /bookings/1/edit
   def edit
+    #@booking = Booking.find(params[:id])
   end
 
   def manage
@@ -47,13 +47,12 @@ class Admin::BookingsController < ApplicationController
     # PATCH/PUT /bookings/1
   # PATCH/PUT /bookings/1.json
   def update
+    @booking = Booking.find(params[:id])
     respond_to do |format|
       if @booking.update(booking_params)
-        format.html { redirect_to admin_bookings_path, notice: 'Booking was successfully updated.' }
-        format.json { render :show, status: :ok, location: @booking }
+        format.html { redirect_to admin_bookings_path(:course=> @booking.course), notice: 'Booking was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
     end
   end
