@@ -1,0 +1,15 @@
+<% provide(:title, @page.title) %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @page.title %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @page.body %>
+</p>
+
+
+<%= link_to 'Back', pages_path %>

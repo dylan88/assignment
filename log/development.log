@@ -22514,3 +22514,1494 @@ Processing by Admin::PagesController#index as HTML
 Completed 200 OK in 154ms (Views: 152.4ms | ActiveRecord: 0.5ms)
   [1m[36mPage Load (0.2ms)[0m  [1mSELECT  "pages".* FROM "pages"  ORDER BY "pages"."id" DESC LIMIT 1[0m
 >>>>>>> 209cfb8fb0d34a93ff34f75b62c0c7db707931b7
+  [1m[36m (11.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (12.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateUsers (20170320191913)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170320191913"]]
+  [1m[35m (11.3ms)[0m  commit transaction
+Migrating to AddPasswordDigestToUsers (20170320192846)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "password_digest" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170320192846"]]
+  [1m[35m (9.7ms)[0m  commit transaction
+Migrating to AddIndexToUsersEmail (20170324133137)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170324133137"]]
+  [1m[36m (10.0ms)[0m  [1mcommit transaction[0m
+Migrating to AddRememberDigestToUsers (20170503212217)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD "remember_digest" varchar[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170503212217"]]
+  [1m[36m (11.7ms)[0m  [1mcommit transaction[0m
+Migrating to AddAdminToUsers (20170504021227)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD "admin" boolean DEFAULT 'f'[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170504021227"]]
+  [1m[36m (10.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreatePages (20170504201607)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "pages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" text, "images_ids" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170504201607"]]
+  [1m[36m (11.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCourses (20170505152404)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "instructor" varchar, "description" varchar, "start_date" date, "hour" time, "participants" varchar, "day" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170505152404"]]
+  [1m[36m (10.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateImages (20170505154006)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "filename" varchar, "alt" varchar, "caption" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170505154006"]]
+  [1m[36m (9.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateMemberships (20170506014556)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "memberships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" text, "price" decimal, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170506014556"]]
+  [1m[36m (8.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateContacts (20170506150748)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "contacts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "phone" varchar, "email" varchar, "message" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170506150748"]]
+  [1m[36m (11.2ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('root@root.com') LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Admin"], ["email", "root@root.com"], ["password_digest", "$2a$10$YFlzQxp.fRB18s1..Ac/nu2dGY9xdQvCWmpgcLAZqqS/ogf75whGu"], ["admin", "t"], ["created_at", "2017-05-07 00:00:18.332950"], ["updated_at", "2017-05-07 00:00:18.332950"]]
+  [1m[36m (13.2ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/" for 37.228.239.208 at 2017-05-07 18:24:17 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#home as HTML
+  Rendered static_pages/home.html.erb within layouts/application (478.0ms)
+  Rendered layouts/_shim.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (4.4ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 561ms (Views: 551.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/courses.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 37.228.239.208 at 2017-05-07 18:24:18 +0000
+
+
+Started GET "/assets/courses.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 37.228.239.208 at 2017-05-07 18:24:18 +0000
+
+
+Started GET "/memberships" for 37.228.239.208 at 2017-05-07 18:24:20 +0000
+Processing by MembershipsController#index as HTML
+  [1m[35mMembership Load (0.2ms)[0m  SELECT "memberships".* FROM "memberships"
+  Rendered memberships/index.html.erb within layouts/application (3.2ms)
+  Rendered layouts/_shim.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (1.8ms)
+  Rendered layouts/_footer.html.erb (1.0ms)
+Completed 200 OK in 100ms (Views: 96.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/login" for 37.228.239.208 at 2017-05-07 18:24:23 +0000
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (33.2ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 103ms (Views: 102.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 37.228.239.208 at 2017-05-07 18:24:29 +0000
+Processing by StaticPagesController#home as HTML
+  Rendered static_pages/home.html.erb within layouts/application (2.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 59ms (Views: 58.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages" for 37.228.239.208 at 2017-05-07 18:25:01 +0000
+Processing by PagesController#index as HTML
+  [1m[36mPage Load (0.3ms)[0m  [1mSELECT "pages".* FROM "pages"[0m
+  Rendered pages/index.html.erb within layouts/application (2.9ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 85ms (Views: 80.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pages" for 37.228.239.208 at 2017-05-07 18:28:35 +0000
+Processing by PagesController#index as HTML
+  [1m[35mPage Load (0.4ms)[0m  SELECT "pages".* FROM "pages"
+  Rendered pages/index.html.erb within layouts/application (1.8ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 120ms (Views: 117.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/pages" for 37.228.239.208 at 2017-05-07 18:28:37 +0000
+Processing by PagesController#index as HTML
+  [1m[36mPage Load (0.3ms)[0m  [1mSELECT "pages".* FROM "pages"[0m
+  Rendered pages/index.html.erb within layouts/application (1.1ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 51ms (Views: 50.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 37.228.239.208 at 2017-05-07 18:28:38 +0000
+Processing by StaticPagesController#home as HTML
+  Rendered static_pages/home.html.erb within layouts/application (1.7ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 49ms (Views: 48.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages" for 37.228.239.208 at 2017-05-07 18:28:40 +0000
+Processing by PagesController#index as HTML
+  [1m[35mPage Load (0.2ms)[0m  SELECT "pages".* FROM "pages"
+  Rendered pages/index.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 51ms (Views: 50.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/login" for 37.228.239.208 at 2017-05-07 18:28:43 +0000
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 54ms (Views: 53.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 37.228.239.208 at 2017-05-07 18:28:53 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"V2xSsvXStyTVvfanvWVxDi6C6wg5gjBjQbJu0BSdvQCI9mQJZIBf/AHno5PrYRbTZ/XSaHDHD5BpsJEIOMvCJg==", "session"=>{"email"=>"root@root.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1[0m  [["email", "root@root.com"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+Redirected to https://test-didoudou.c9users.io/users/1
+Completed 302 Found in 95ms (ActiveRecord: 0.9ms)
+
+
+Started GET "/users/1" for 37.228.239.208 at 2017-05-07 18:28:54 +0000
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.8ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 51ms (Views: 49.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-07 18:28:58 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 50ms (Views: 48.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/admin/pages" for 37.228.239.208 at 2017-05-07 18:29:01 +0000
+Processing by Admin::PagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPage Load (0.2ms)[0m  SELECT "pages".* FROM "pages"
+  Rendered admin/pages/index.html.erb within layouts/application (1.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 50ms (Views: 48.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 18:29:02 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images"
+  Rendered admin/pages/_form_page.html.erb (17.8ms)
+  Rendered admin/pages/new.html.erb within layouts/application (19.9ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 90ms (Views: 85.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/memberships" for 37.228.239.208 at 2017-05-07 18:29:12 +0000
+Processing by MembershipsController#index as HTML
+  [1m[36mMembership Load (0.2ms)[0m  [1mSELECT "memberships".* FROM "memberships"[0m
+  Rendered memberships/index.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.7ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 57ms (Views: 54.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-07 18:29:15 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 65ms (Views: 63.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/admin/memberships" for 37.228.239.208 at 2017-05-07 18:29:17 +0000
+Processing by Admin::MembershipsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mMembership Load (0.3ms)[0m  [1mSELECT "memberships".* FROM "memberships"[0m
+  Rendered admin/memberships/index.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 69ms (Views: 66.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin/memberships/new" for 37.228.239.208 at 2017-05-07 18:29:18 +0000
+Processing by Admin::MembershipsController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/memberships/_form.html.erb (5.9ms)
+  Rendered admin/memberships/new.html.erb within layouts/application (9.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 213ms (Views: 204.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/admin/images" for 37.228.239.208 at 2017-05-07 18:29:23 +0000
+Processing by Admin::ImagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images"
+  Rendered admin/images/index.html.erb within layouts/application (2.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (1.2ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 68ms (Views: 65.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin/pages" for 37.228.239.208 at 2017-05-07 18:29:26 +0000
+Processing by Admin::PagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPage Load (0.2ms)[0m  SELECT "pages".* FROM "pages"
+  Rendered admin/pages/index.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 52ms (Views: 49.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-07 18:29:52 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 56ms (Views: 55.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/admin/pages" for 37.228.239.208 at 2017-05-07 18:29:54 +0000
+Processing by Admin::PagesController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPage Load (0.2ms)[0m  [1mSELECT "pages".* FROM "pages"[0m
+  Rendered admin/pages/index.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 54ms (Views: 52.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 18:29:56 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/pages/_form_page.html.erb (3.1ms)
+  Rendered admin/pages/new.html.erb within layouts/application (4.3ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 53ms (Views: 51.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-07 18:30:02 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 195ms (Views: 193.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/admin/images" for 37.228.239.208 at 2017-05-07 18:30:05 +0000
+Processing by Admin::ImagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images"
+  Rendered admin/images/index.html.erb within layouts/application (1.1ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 209ms (Views: 206.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin/images/new" for 37.228.239.208 at 2017-05-07 18:30:07 +0000
+Processing by Admin::ImagesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/images/_form.html.erb (5.4ms)
+  Rendered admin/images/new.html.erb within layouts/application (8.2ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 85ms (Views: 79.2ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/admin/images" for 37.228.239.208 at 2017-05-07 18:30:19 +0000
+Processing by Admin::ImagesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Cs4mz2PJKzkbP3oWvgO6Lc3byRmg+SIZ9yGtDGUOAGbVVBB08pvD4c9lLyLoB93whKzweem8HerfI1LUSVh/QA==", "image"=>{"filename"=>#<ActionDispatch::Http::UploadedFile:0x007f64ac4e70d8 @tempfile=#<Tempfile:/tmp/RackMultipart20170507-2216-1t0yrqp.jpg>, @original_filename="IMG_20160908_145859.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image[filename]\"; filename=\"IMG_20160908_145859.jpg\"\r\nContent-Type: image/jpeg\r\n">, "alt"=>"zad", "caption"=>"edfz"}, "commit"=>"Create Image"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "images" ("filename", "alt", "caption", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["filename", "IMG_20160908_145859.jpg"], ["alt", "zad"], ["caption", "edfz"], ["created_at", "2017-05-07 18:30:19.571315"], ["updated_at", "2017-05-07 18:30:19.571315"]]
+  [1m[36m (11.3ms)[0m  [1mcommit transaction[0m
+Redirected to https://test-didoudou.c9users.io/admin/images
+Completed 302 Found in 28ms (ActiveRecord: 11.9ms)
+
+
+Started GET "/admin/images" for 37.228.239.208 at 2017-05-07 18:30:20 +0000
+Processing by Admin::ImagesController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/images/index.html.erb within layouts/application (3.6ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 62ms (Views: 60.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-07 18:30:22 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 64ms (Views: 62.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/admin/pages" for 37.228.239.208 at 2017-05-07 18:30:24 +0000
+Processing by Admin::PagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPage Load (0.2ms)[0m  SELECT "pages".* FROM "pages"
+  Rendered admin/pages/index.html.erb within layouts/application (1.1ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 68ms (Views: 66.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 18:30:26 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images"
+  Rendered admin/pages/_form_page.html.erb (4.0ms)
+  Rendered admin/pages/new.html.erb within layouts/application (5.3ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 209ms (Views: 207.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 18:31:06 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/pages/_form_page.html.erb (1.7ms)
+  Rendered admin/pages/new.html.erb within layouts/application (2.9ms)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.1ms)
+
+SyntaxError (/home/ubuntu/workspace/assignment/app/views/admin/pages/_form_page.html.erb:9: syntax error, unexpected =>
+... ,{ :multiple => true, class => "checkbox"}));@output_buffer...
+...                               ^
+/home/ubuntu/workspace/assignment/app/views/admin/pages/_form_page.html.erb:9: syntax error, unexpected '}', expecting ')'
+...e => true, class => "checkbox"}));@output_buffer.safe_append...
+...                               ^
+/home/ubuntu/workspace/assignment/app/views/admin/pages/_form_page.html.erb:11: syntax error, unexpected keyword_end, expecting ')'
+'.freeze; end ;@output_buffer.to_s
+             ^
+/home/ubuntu/workspace/assignment/app/views/admin/pages/_form_page.html.erb:12: syntax error, unexpected keyword_ensure, expecting ')'
+/home/ubuntu/workspace/assignment/app/views/admin/pages/_form_page.html.erb:14: syntax error, unexpected keyword_end, expecting ')'):
+  app/views/admin/pages/_form_page.html.erb:9: syntax error, unexpected =>
+  app/views/admin/pages/_form_page.html.erb:9: syntax error, unexpected '}', expecting ')'
+  app/views/admin/pages/_form_page.html.erb:11: syntax error, unexpected keyword_end, expecting ')'
+  app/views/admin/pages/_form_page.html.erb:12: syntax error, unexpected keyword_ensure, expecting ')'
+  app/views/admin/pages/_form_page.html.erb:14: syntax error, unexpected keyword_end, expecting ')'
+  app/views/admin/pages/new.html.erb:6:in `_app_views_admin_pages_new_html_erb___1831302254548840554_70035314570920'
+  app/controllers/admin/pages_controller.rb:27:in `new'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (9.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (4.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (46.8ms)
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 18:31:26 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/pages/_form_page.html.erb (5.9ms)
+  Rendered admin/pages/new.html.erb within layouts/application (7.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (1.3ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 94ms (Views: 92.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 18:38:20 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/pages/_form_page.html.erb (3.9ms)
+  Rendered admin/pages/new.html.erb within layouts/application (5.0ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 1694ms (Views: 1692.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/custom.self-c5373e060d441808c1710ca8871779e26e12e6a221a21d57fb128dafc2111471.css?body=1" for 37.228.239.208 at 2017-05-07 18:38:22 +0000
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 18:38:53 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/pages/_form_page.html.erb (2.9ms)
+  Rendered admin/pages/new.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 2116ms (Views: 2114.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/custom.self-7311504010d3da9302b4aed90187cfcb72fccece5f669dda4f852417f471d487.css?body=1" for 37.228.239.208 at 2017-05-07 18:38:56 +0000
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 18:39:32 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/pages/_form_page.html.erb (4.4ms)
+  Rendered admin/pages/new.html.erb within layouts/application (5.9ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 153ms (Views: 151.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 18:40:37 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/pages/_form_page.html.erb (4.0ms)
+  Rendered admin/pages/new.html.erb within layouts/application (5.2ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 2073ms (Views: 2071.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/custom.self-e0bd3ced0902a9a0c249a8771d319da53f55bcb513d264c95e3ff1edf4703c10.css?body=1" for 37.228.239.208 at 2017-05-07 18:40:39 +0000
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 18:41:20 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/pages/_form_page.html.erb (2.7ms)
+  Rendered admin/pages/new.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 1535ms (Views: 1533.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/custom.self-08602056e8b49235b054372f84d9114e0940d6464eb23a402a49d4d389a5bd8f.css?body=1" for 37.228.239.208 at 2017-05-07 18:41:22 +0000
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 18:41:51 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/pages/_form_page.html.erb (2.7ms)
+  Rendered admin/pages/new.html.erb within layouts/application (3.8ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 1831ms (Views: 1829.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/custom.self-017a43260f43969ff50c341600c9b7053613d280f32d720df3bf19cb6ce6bec5.css?body=1" for 37.228.239.208 at 2017-05-07 18:41:53 +0000
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 18:42:26 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/pages/_form_page.html.erb (2.7ms)
+  Rendered admin/pages/new.html.erb within layouts/application (3.9ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 2368ms (Views: 2366.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/custom.self-ebfd7279ab048dc72d6a854eedbe79a36c54a2fcf9b14b286627c6e8fa139609.css?body=1" for 37.228.239.208 at 2017-05-07 18:42:29 +0000
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 18:44:23 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/pages/_form_page.html.erb (2.8ms)
+  Rendered admin/pages/new.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 1727ms (Views: 1725.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/custom.self-24236e508341da7cea139874cb7620364840f5fb9019be23960ef4cc38271193.css?body=1" for 37.228.239.208 at 2017-05-07 18:44:25 +0000
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 18:45:15 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/pages/_form_page.html.erb (3.0ms)
+  Rendered admin/pages/new.html.erb within layouts/application (4.2ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (1.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 1690ms (Views: 1688.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/custom.self-494ecbc4c445dfe06ca787bdbcfbaec11ee8a090a7ee0e62d5eb61a90155bc0c.css?body=1" for 37.228.239.208 at 2017-05-07 18:45:18 +0000
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 18:46:36 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/pages/_form_page.html.erb (3.9ms)
+  Rendered admin/pages/new.html.erb within layouts/application (5.3ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 67ms (Views: 65.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 18:46:43 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/pages/_form_page.html.erb (3.9ms)
+  Rendered admin/pages/new.html.erb within layouts/application (5.1ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 61ms (Views: 59.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 18:47:45 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/pages/_form_page.html.erb (3.6ms)
+  Rendered admin/pages/new.html.erb within layouts/application (4.8ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 1730ms (Views: 1728.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/custom.self-d1f9bb5568543d71348b67f7c305923a2c3885db15a8501403b894e50c424d3c.css?body=1" for 37.228.239.208 at 2017-05-07 18:47:47 +0000
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 18:57:20 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/pages/_form_page.html.erb (2.9ms)
+  Rendered admin/pages/new.html.erb within layouts/application (4.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 1791ms (Views: 1789.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/custom.self-8382a6bbdf018c29ab223614d95d5e0e10f77af2a7adf626b02523d453405dd7.css?body=1" for 37.228.239.208 at 2017-05-07 18:57:23 +0000
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 18:58:39 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/pages/_form_page.html.erb (6.5ms)
+  Rendered admin/pages/new.html.erb within layouts/application (7.6ms)
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.1ms)
+
+NoMethodError (undefined method `basename' for :filename:Symbol):
+  app/views/admin/pages/_form_page.html.erb:9:in `block in _app_views_admin_pages__form_page_html_erb___3017921095987743737_70035339765460'
+  app/views/admin/pages/_form_page.html.erb:1:in `_app_views_admin_pages__form_page_html_erb___3017921095987743737_70035339765460'
+  app/views/admin/pages/new.html.erb:6:in `_app_views_admin_pages_new_html_erb___1831302254548840554_70035314570920'
+  app/controllers/admin/pages_controller.rb:27:in `new'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (8.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (4.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (39.4ms)
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 18:59:14 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/pages/_form_page.html.erb (6.9ms)
+  Rendered admin/pages/new.html.erb within layouts/application (8.5ms)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.2ms)
+
+TypeError (no implicit conversion of Symbol into String):
+  app/views/admin/pages/_form_page.html.erb:9:in `basename'
+  app/views/admin/pages/_form_page.html.erb:9:in `block in _app_views_admin_pages__form_page_html_erb___3017921095987743737_70035194307100'
+  app/views/admin/pages/_form_page.html.erb:1:in `_app_views_admin_pages__form_page_html_erb___3017921095987743737_70035194307100'
+  app/views/admin/pages/new.html.erb:6:in `_app_views_admin_pages_new_html_erb___1831302254548840554_70035314570920'
+  app/controllers/admin/pages_controller.rb:27:in `new'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (12.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (52.3ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (12.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (11.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateUsers (20170320191913)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170320191913"]]
+  [1m[35m (13.1ms)[0m  commit transaction
+Migrating to AddPasswordDigestToUsers (20170320192846)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "users" ADD "password_digest" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170320192846"]]
+  [1m[35m (11.6ms)[0m  commit transaction
+Migrating to AddIndexToUsersEmail (20170324133137)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170324133137"]]
+  [1m[36m (10.0ms)[0m  [1mcommit transaction[0m
+Migrating to AddRememberDigestToUsers (20170503212217)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD "remember_digest" varchar[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170503212217"]]
+  [1m[36m (9.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddAdminToUsers (20170504021227)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD "admin" boolean DEFAULT 'f'[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170504021227"]]
+  [1m[36m (12.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreatePages (20170504201607)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "pages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" text, "images_ids" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170504201607"]]
+  [1m[36m (10.3ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCourses (20170505152404)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "instructor" varchar, "description" varchar, "start_date" date, "hour" time, "participants" varchar, "day" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170505152404"]]
+  [1m[36m (12.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateImages (20170505154006)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "filename" varchar, "alt" varchar, "caption" varchar, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170505154006"]]
+  [1m[36m (12.3ms)[0m  [1mcommit transaction[0m
+Migrating to CreateMemberships (20170506014556)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "memberships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" text, "price" decimal, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170506014556"]]
+  [1m[36m (10.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreateContacts (20170506150748)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "contacts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "phone" varchar, "email" varchar, "message" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170506150748"]]
+  [1m[36m (11.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (14.0ms)[0m  [1mCREATE TABLE "contacts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "phone" varchar, "email" varchar, "message" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (10.5ms)[0m  CREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "instructor" varchar, "description" varchar, "start_date" date, "hour" time, "participants" varchar, "day" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (7.7ms)[0m  [1mCREATE TABLE "images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "filename" varchar, "alt" varchar, "caption" varchar, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (10.9ms)[0m  CREATE TABLE "memberships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" text, "price" decimal, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (9.9ms)[0m  [1mCREATE TABLE "pages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" text, "images_ids" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (12.9ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar, "remember_digest" varchar, "admin" boolean DEFAULT 'f') 
+  [1m[36m (24.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (10.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.3ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (10.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170506150748')[0m
+  [1m[35m (12.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170505152404')
+  [1m[36m (8.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170324133137')[0m
+  [1m[35m (10.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170503212217')
+  [1m[36m (13.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170505154006')[0m
+  [1m[35m (10.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170320192846')
+  [1m[36m (8.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170504201607')[0m
+  [1m[35m (11.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170506014556')
+  [1m[36m (10.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170320191913')[0m
+  [1m[35m (9.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170504021227')
+  [1m[36m (13.5ms)[0m  [1mCREATE TABLE "contacts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "phone" varchar, "email" varchar, "message" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (14.3ms)[0m  CREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "instructor" varchar, "description" varchar, "start_date" date, "hour" time, "participants" varchar, "day" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (15.4ms)[0m  [1mCREATE TABLE "images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "filename" varchar, "alt" varchar, "caption" varchar, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (13.9ms)[0m  CREATE TABLE "memberships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" text, "price" decimal, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (11.5ms)[0m  [1mCREATE TABLE "pages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" text, "images_ids" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (14.0ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar, "remember_digest" varchar, "admin" boolean DEFAULT 'f') 
+  [1m[36m (11.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (10.4ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (14.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170506150748')[0m
+  [1m[35m (13.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170505152404')
+  [1m[36m (11.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170324133137')[0m
+  [1m[35m (10.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170503212217')
+  [1m[36m (12.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170505154006')[0m
+  [1m[35m (8.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170320192846')
+  [1m[36m (10.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170504201607')[0m
+  [1m[35m (8.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170506014556')
+  [1m[36m (13.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170320191913')[0m
+  [1m[35m (9.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170504021227')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('root@root.com') LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Admin"], ["email", "root@root.com"], ["password_digest", "$2a$10$fj2Ya8dl1HbEgJa.WcoCY.kjAfgI4mIqOs3Dvnl1rJNLq9Jl8DZa2"], ["admin", "t"], ["created_at", "2017-05-07 19:02:51.107427"], ["updated_at", "2017-05-07 19:02:51.107427"]]
+  [1m[36m (11.4ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/admin/" for 37.228.239.208 at 2017-05-07 19:04:07 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 76ms (Views: 66.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/images" for 37.228.239.208 at 2017-05-07 19:04:12 +0000
+Processing by Admin::ImagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images"
+  Rendered admin/images/index.html.erb within layouts/application (1.6ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 78ms (Views: 70.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/admin/images/new" for 37.228.239.208 at 2017-05-07 19:04:13 +0000
+Processing by Admin::ImagesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/images/_form.html.erb (3.7ms)
+  Rendered admin/images/new.html.erb within layouts/application (5.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 81ms (Views: 73.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admin/images/new" for 37.228.239.208 at 2017-05-07 19:04:49 +0000
+Processing by Admin::ImagesController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/images/_form.html.erb (4.7ms)
+  Rendered admin/images/new.html.erb within layouts/application (6.9ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (37.3ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 141ms (Views: 139.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/admin/images" for 37.228.239.208 at 2017-05-07 19:05:40 +0000
+Processing by Admin::ImagesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gJzM8U9JGyDx1F64wh3yUPZlKywesRRVOhmnK9I/s0VfBvpK3hvz+CWOC4yUGZWNvxISTFf0K6YSG1jz/mnMYw==", "image"=>{"filename"=>#<ActionDispatch::Http::UploadedFile:0x007f64ae809638 @tempfile=#<Tempfile:/tmp/RackMultipart20170507-2216-1gm8fkd.jpg>, @original_filename="IMG_20160908_113410.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image[filename]\"; filename=\"IMG_20160908_113410.jpg\"\r\nContent-Type: image/jpeg\r\n">, "name"=>"paysage1", "alt"=>"zqd", "caption"=>"eqdsd"}, "commit"=>"Create Image"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "images" ("filename", "name", "alt", "caption", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["filename", "IMG_20160908_113410.jpg"], ["name", "paysage1"], ["alt", "zqd"], ["caption", "eqdsd"], ["created_at", "2017-05-07 19:05:40.840864"], ["updated_at", "2017-05-07 19:05:40.840864"]]
+  [1m[35m (11.3ms)[0m  commit transaction
+Redirected to https://test-didoudou.c9users.io/admin/images
+Completed 302 Found in 39ms (ActiveRecord: 12.8ms)
+
+
+Started GET "/admin/images" for 37.228.239.208 at 2017-05-07 19:05:41 +0000
+Processing by Admin::ImagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images"
+  Rendered admin/images/index.html.erb within layouts/application (1.9ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 65ms (Views: 63.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-07 19:06:17 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 60ms (Views: 58.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/admin/pages" for 37.228.239.208 at 2017-05-07 19:06:19 +0000
+Processing by Admin::PagesController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPage Load (0.2ms)[0m  [1mSELECT "pages".* FROM "pages"[0m
+  Rendered admin/pages/index.html.erb within layouts/application (1.6ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 64ms (Views: 60.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 19:06:21 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/pages/_form_page.html.erb (1.9ms)
+  Rendered admin/pages/new.html.erb within layouts/application (3.3ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.3ms)
+
+SyntaxError (/home/ubuntu/workspace/assignment/app/views/admin/pages/_form_page.html.erb:9: syntax error, unexpected ',', expecting ')'
+...es_ids, Image.all ,:id, :name), { :prompt => "Please select"...
+...                               ^
+/home/ubuntu/workspace/assignment/app/views/admin/pages/_form_page.html.erb:9: syntax error, unexpected ',', expecting ')'
+...{ :prompt => "Please select"} ,{ :multiple => true}));@outpu...
+...                               ^
+/home/ubuntu/workspace/assignment/app/views/admin/pages/_form_page.html.erb:9: syntax error, unexpected ')', expecting keyword_end
+...elect"} ,{ :multiple => true}));@output_buffer.safe_append='...
+...                               ^):
+  app/views/admin/pages/_form_page.html.erb:9: syntax error, unexpected ',', expecting ')'
+  app/views/admin/pages/_form_page.html.erb:9: syntax error, unexpected ',', expecting ')'
+  app/views/admin/pages/_form_page.html.erb:9: syntax error, unexpected ')', expecting keyword_end
+  app/views/admin/pages/new.html.erb:6:in `_app_views_admin_pages_new_html_erb___1831302254548840554_70035314570920'
+  app/controllers/admin/pages_controller.rb:27:in `new'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (7.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (131.9ms)
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 19:06:22 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/pages/_form_page.html.erb (1.3ms)
+  Rendered admin/pages/new.html.erb within layouts/application (2.5ms)
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.1ms)
+
+SyntaxError (/home/ubuntu/workspace/assignment/app/views/admin/pages/_form_page.html.erb:9: syntax error, unexpected ',', expecting ')'
+...es_ids, Image.all ,:id, :name), { :prompt => "Please select"...
+...                               ^
+/home/ubuntu/workspace/assignment/app/views/admin/pages/_form_page.html.erb:9: syntax error, unexpected ',', expecting ')'
+...{ :prompt => "Please select"} ,{ :multiple => true}));@outpu...
+...                               ^
+/home/ubuntu/workspace/assignment/app/views/admin/pages/_form_page.html.erb:9: syntax error, unexpected ')', expecting keyword_end
+...elect"} ,{ :multiple => true}));@output_buffer.safe_append='...
+...                               ^):
+  app/views/admin/pages/_form_page.html.erb:9: syntax error, unexpected ',', expecting ')'
+  app/views/admin/pages/_form_page.html.erb:9: syntax error, unexpected ',', expecting ')'
+  app/views/admin/pages/_form_page.html.erb:9: syntax error, unexpected ')', expecting keyword_end
+  app/views/admin/pages/new.html.erb:6:in `_app_views_admin_pages_new_html_erb___1831302254548840554_70035314570920'
+  app/controllers/admin/pages_controller.rb:27:in `new'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_source.erb (7.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (3.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (38.5ms)
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 19:07:00 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/pages/_form_page.html.erb (4.5ms)
+  Rendered admin/pages/new.html.erb within layouts/application (5.9ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 63ms (Views: 61.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 19:08:05 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/pages/_form_page.html.erb (4.8ms)
+  Rendered admin/pages/new.html.erb within layouts/application (6.0ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 1713ms (Views: 1711.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/custom.self-c1023b835c0034f6c8e62515b371ec8876e7d3560163076b84412dfef4394fcb.css?body=1" for 37.228.239.208 at 2017-05-07 19:08:07 +0000
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 19:09:03 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/pages/_form_page.html.erb (3.4ms)
+  Rendered admin/pages/new.html.erb within layouts/application (4.7ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 61ms (Views: 59.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 19:09:26 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/pages/_form_page.html.erb (2.8ms)
+  Rendered admin/pages/new.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 67ms (Views: 65.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-07 19:22:13 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 108ms (Views: 106.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/admin/images" for 37.228.239.208 at 2017-05-07 19:22:23 +0000
+Processing by Admin::ImagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images"
+  Rendered admin/images/index.html.erb within layouts/application (2.1ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 66ms (Views: 64.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-07 19:25:17 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 58ms (Views: 56.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/admin/pages" for 37.228.239.208 at 2017-05-07 19:25:19 +0000
+Processing by Admin::PagesController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPage Load (0.2ms)[0m  [1mSELECT "pages".* FROM "pages"[0m
+  Rendered admin/pages/index.html.erb within layouts/application (0.8ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 56ms (Views: 54.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages" for 37.228.239.208 at 2017-05-07 20:21:15 +0000
+Processing by PagesController#index as HTML
+  [1m[35mPage Load (0.2ms)[0m  SELECT "pages".* FROM "pages"
+  Rendered pages/index.html.erb within layouts/application (1.6ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (2.2ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 72ms (Views: 70.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-07 20:21:23 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 57ms (Views: 55.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/admin/images" for 37.228.239.208 at 2017-05-07 20:21:26 +0000
+Processing by Admin::ImagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images"
+  Rendered admin/images/index.html.erb within layouts/application (1.8ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 55ms (Views: 53.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin/images/new" for 37.228.239.208 at 2017-05-07 20:21:28 +0000
+Processing by Admin::ImagesController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/images/_form.html.erb (4.0ms)
+  Rendered admin/images/new.html.erb within layouts/application (7.6ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 59ms (Views: 57.7ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/admin/images" for 37.228.239.208 at 2017-05-07 20:22:03 +0000
+Processing by Admin::ImagesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aYP9DrT+YfwbEdmK7vSIyebsGVBKANMvoWKQftfPik22Gcu1JayJJM9LjL648O8Ur5sgMANF7NyJYG+m+5n1aw==", "image"=>{"filename"=>#<ActionDispatch::Http::UploadedFile:0x007f64ae26d3a0 @tempfile=#<Tempfile:/tmp/RackMultipart20170507-2216-1kkzpuu.jpg>, @original_filename="IMG_20160927_160424.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image[filename]\"; filename=\"IMG_20160927_160424.jpg\"\r\nContent-Type: image/jpeg\r\n">, "name"=>"image2", "alt"=>"eflkj", "caption"=>"jefz"}, "commit"=>"Create Image"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "images" ("filename", "name", "alt", "caption", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["filename", "IMG_20160927_160424.jpg"], ["name", "image2"], ["alt", "eflkj"], ["caption", "jefz"], ["created_at", "2017-05-07 20:22:03.878823"], ["updated_at", "2017-05-07 20:22:03.878823"]]
+  [1m[36m (10.5ms)[0m  [1mcommit transaction[0m
+Redirected to https://test-didoudou.c9users.io/admin/images
+Completed 302 Found in 23ms (ActiveRecord: 11.1ms)
+
+
+Started GET "/admin/images" for 37.228.239.208 at 2017-05-07 20:22:03 +0000
+Processing by Admin::ImagesController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/images/index.html.erb within layouts/application (2.3ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 52ms (Views: 50.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin/images/new" for 37.228.239.208 at 2017-05-07 20:22:09 +0000
+Processing by Admin::ImagesController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/images/_form.html.erb (2.5ms)
+  Rendered admin/images/new.html.erb within layouts/application (4.5ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 60ms (Views: 58.0ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/admin/images" for 37.228.239.208 at 2017-05-07 20:22:21 +0000
+Processing by Admin::ImagesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BBOAV/X4hKXhT96ZGOcE8nXwtBYq6emdj2GtpN7RLvPbibbsZKpsfTUVi61O42MvPIeNdmOs1m6nY1J88odR1Q==", "image"=>{"filename"=>#<ActionDispatch::Http::UploadedFile:0x007f64ada7f710 @tempfile=#<Tempfile:/tmp/RackMultipart20170507-2216-vmspdd.jpg>, @original_filename="IMG_20161001_161149.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image[filename]\"; filename=\"IMG_20161001_161149.jpg\"\r\nContent-Type: image/jpeg\r\n">, "name"=>"dnskjkjfdns", "alt"=>"lkdfe", "caption"=>"kekckc,cf"}, "commit"=>"Create Image"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "images" ("filename", "name", "alt", "caption", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["filename", "IMG_20161001_161149.jpg"], ["name", "dnskjkjfdns"], ["alt", "lkdfe"], ["caption", "kekckc,cf"], ["created_at", "2017-05-07 20:22:21.139284"], ["updated_at", "2017-05-07 20:22:21.139284"]]
+  [1m[35m (32.9ms)[0m  commit transaction
+Redirected to https://test-didoudou.c9users.io/admin/images
+Completed 302 Found in 43ms (ActiveRecord: 33.5ms)
+
+
+Started GET "/admin/images" for 37.228.239.208 at 2017-05-07 20:22:21 +0000
+Processing by Admin::ImagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images"
+  Rendered admin/images/index.html.erb within layouts/application (4.1ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 148ms (Views: 146.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-07 20:22:26 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 82ms (Views: 80.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/admin/pages" for 37.228.239.208 at 2017-05-07 20:22:41 +0000
+Processing by Admin::PagesController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPage Load (0.3ms)[0m  [1mSELECT "pages".* FROM "pages"[0m
+  Rendered admin/pages/index.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 74ms (Views: 72.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 20:22:53 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.4ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered admin/pages/_form_page.html.erb (5.1ms)
+  Rendered admin/pages/new.html.erb within layouts/application (8.3ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 65ms (Views: 62.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-07 20:27:02 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 52ms (Views: 50.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/admin/images" for 37.228.239.208 at 2017-05-07 20:27:04 +0000
+Processing by Admin::ImagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images"
+  Rendered admin/images/index.html.erb within layouts/application (2.8ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 51ms (Views: 49.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-07 20:27:47 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 49ms (Views: 47.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-07 20:27:48 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 49ms (Views: 47.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/admin/pages" for 37.228.239.208 at 2017-05-07 20:27:50 +0000
+Processing by Admin::PagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPage Load (0.2ms)[0m  SELECT "pages".* FROM "pages"
+  Rendered admin/pages/index.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 58ms (Views: 57.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 20:27:52 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images"
+  Rendered admin/pages/_form_page.html.erb (3.7ms)
+  Rendered admin/pages/new.html.erb within layouts/application (5.3ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 74ms (Views: 71.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 20:33:52 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images"
+  Rendered admin/pages/_form_page.html.erb (3.9ms)
+  Rendered admin/pages/new.html.erb within layouts/application (5.6ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (1.2ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 2222ms (Views: 2219.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/custom.self-ce5162744ed4a4444fe1e01acc8418a0571c7a7b5f2b93b1775c555f32ede60f.css?body=1" for 37.228.239.208 at 2017-05-07 20:33:55 +0000
+
+
+Started GET "/admin/pages/new" for 37.228.239.208 at 2017-05-07 20:34:29 +0000
+Processing by Admin::PagesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images"
+  Rendered admin/pages/_form_page.html.erb (3.3ms)
+  Rendered admin/pages/new.html.erb within layouts/application (4.7ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 1767ms (Views: 1765.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/custom.self-9cea2c1fd5273cf1d4b09d45dc80196063498286fe834654dbf2a3b1d69473f3.css?body=1" for 37.228.239.208 at 2017-05-07 20:34:31 +0000
+
+
+Started POST "/admin/pages" for 37.228.239.208 at 2017-05-07 20:38:25 +0000
+Processing by Admin::PagesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Peb+yHTEA8RzRTQEYRFla9EfmfYe4thBo1ANnUFmzQvifMhz5ZbrHKcfYTA3FQK2mGigllen57KLUvJFbTCyLQ==", "page"=>{"title"=>"test", "body"=>"lala", "images_ids"=>["2", "3", ""]}, "commit"=>"Create page"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "pages" ("title", "body", "images_ids", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "test"], ["body", "lala"], ["images_ids", "[\"2\", \"3\", \"\"]"], ["created_at", "2017-05-07 20:38:25.301871"], ["updated_at", "2017-05-07 20:38:25.301871"]]
+  [1m[35m (11.9ms)[0m  commit transaction
+Redirected to https://test-didoudou.c9users.io/admin/pages
+Completed 302 Found in 16ms (ActiveRecord: 12.4ms)
+
+
+Started GET "/admin/pages" for 37.228.239.208 at 2017-05-07 20:38:25 +0000
+Processing by Admin::PagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPage Load (0.2ms)[0m  SELECT "pages".* FROM "pages"
+  Rendered admin/pages/index.html.erb within layouts/application (1.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 65ms (Views: 62.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages.1" for 37.228.239.208 at 2017-05-07 20:38:29 +0000
+Processing by PagesController#index as 
+  [1m[36mPage Load (0.3ms)[0m  [1mSELECT "pages".* FROM "pages"[0m
+  Rendered pages/index.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (2.1ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 84ms (Views: 83.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages.1" for 37.228.239.208 at 2017-05-07 20:38:33 +0000
+Processing by PagesController#index as 
+  [1m[36mPage Load (0.2ms)[0m  [1mSELECT "pages".* FROM "pages"[0m
+  Rendered pages/index.html.erb within layouts/application (1.1ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 71ms (Views: 70.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages.1" for 37.228.239.208 at 2017-05-07 20:38:36 +0000
+Processing by PagesController#index as 
+  [1m[36mPage Load (0.3ms)[0m  [1mSELECT "pages".* FROM "pages"[0m
+  Rendered pages/index.html.erb within layouts/application (1.2ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 89ms (Views: 88.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/1" for 37.228.239.208 at 2017-05-07 20:38:47 +0000
+
+ActionController::RoutingError (No route matches [GET] "/pages/1"):
+  web-console (2.0.0.beta3) lib/action_dispatch/debug_exceptions.rb:22:in `middleware_call'
+  web-console (2.0.0.beta3) lib/action_dispatch/debug_exceptions.rb:13:in `call'
+  actionpack (4.2.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.2) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.2) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.5) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.5) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.2) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.5) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.2) lib/rails/engine.rb:518:in `call'
+  railties (4.2.2) lib/rails/application.rb:164:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  rack (1.6.5) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.5) lib/rack/handler/webrick.rb:88:in `service'
+  /usr/local/rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /usr/local/rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /usr/local/rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/web-console-2.0.0.beta3/lib/action_dispatch/templates/rescues/routing_error.html.erb within rescues/layout (28.1ms)
+
+
+Started GET "/pages.2" for 37.228.239.208 at 2017-05-07 20:38:52 +0000
+Processing by PagesController#index as 
+  [1m[36mPage Load (0.2ms)[0m  [1mSELECT "pages".* FROM "pages"[0m
+  Rendered pages/index.html.erb within layouts/application (1.2ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 78ms (Views: 77.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages.1" for 37.228.239.208 at 2017-05-07 20:38:56 +0000
+Processing by PagesController#index as 
+  [1m[36mPage Load (0.3ms)[0m  [1mSELECT "pages".* FROM "pages"[0m
+  Rendered pages/index.html.erb within layouts/application (1.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.7ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 100ms (Views: 98.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-07 20:39:30 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 53ms (Views: 51.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/admin/pages" for 37.228.239.208 at 2017-05-07 20:39:32 +0000
+Processing by Admin::PagesController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPage Load (0.2ms)[0m  [1mSELECT "pages".* FROM "pages"[0m
+  Rendered admin/pages/index.html.erb within layouts/application (1.2ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 51ms (Views: 49.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages" for 37.228.239.208 at 2017-05-07 20:39:40 +0000
+Processing by PagesController#index as HTML
+  [1m[35mPage Load (0.2ms)[0m  SELECT "pages".* FROM "pages"
+  Rendered pages/index.html.erb within layouts/application (1.1ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 103ms (Views: 53.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages" for 37.228.239.208 at 2017-05-07 20:40:14 +0000
+Processing by PagesController#index as HTML
+  [1m[35mPage Load (0.5ms)[0m  SELECT "pages".* FROM "pages"
+  Rendered pages/index.html.erb within layouts/application (6.6ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (19.9ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 101ms (Views: 91.4ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/pages.1" for 37.228.239.208 at 2017-05-07 20:40:16 +0000
+Processing by PagesController#index as 
+  [1m[35mPage Load (0.3ms)[0m  SELECT "pages".* FROM "pages"
+  Rendered pages/index.html.erb within layouts/application (1.6ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.6ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 100ms (Views: 98.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/pages" for 37.228.239.208 at 2017-05-07 20:40:18 +0000
+Processing by PagesController#index as HTML
+  [1m[35mPage Load (0.3ms)[0m  SELECT "pages".* FROM "pages"
+  Rendered pages/index.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 58ms (Views: 57.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/pages" for 37.228.239.208 at 2017-05-07 20:40:21 +0000
+Processing by PagesController#index as HTML
+  [1m[35mPage Load (0.2ms)[0m  SELECT "pages".* FROM "pages"
+  Rendered pages/index.html.erb within layouts/application (1.1ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.1ms)
+Completed 200 OK in 64ms (Views: 63.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/1" for 37.228.239.208 at 2017-05-07 20:40:26 +0000
+Processing by PagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPage Load (0.4ms)[0m  SELECT  "pages".* FROM "pages" WHERE "pages"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered pages/show.html.erb within layouts/application (1.2ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 68ms (Views: 65.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pages" for 37.228.239.208 at 2017-05-07 20:40:30 +0000
+Processing by PagesController#index as HTML
+  [1m[35mPage Load (0.3ms)[0m  SELECT "pages".* FROM "pages"
+  Rendered pages/index.html.erb within layouts/application (1.6ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.9ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 88ms (Views: 86.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/pages" for 37.228.239.208 at 2017-05-07 20:40:51 +0000
+Processing by PagesController#index as HTML
+  [1m[35mPage Load (0.5ms)[0m  SELECT "pages".* FROM "pages"
+  Rendered pages/index.html.erb within layouts/application (5.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (11.1ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 75ms (Views: 71.0ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/admin" for 37.228.239.208 at 2017-05-07 20:40:51 +0000
+Processing by Admin::DashboardController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered admin/dashboard/index.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 56ms (Views: 54.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/admin/pages" for 37.228.239.208 at 2017-05-07 20:40:54 +0000
+Processing by Admin::PagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPage Load (0.2ms)[0m  SELECT "pages".* FROM "pages"
+  Rendered admin/pages/index.html.erb within layouts/application (1.5ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 58ms (Views: 56.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 66.249.93.37 at 2017-05-07 20:55:15 +0000
+Processing by StaticPagesController#home as HTML
+  Rendered static_pages/home.html.erb within layouts/application (2.3ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 56ms (Views: 55.3ms | ActiveRecord: 0.0ms)

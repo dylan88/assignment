@@ -4,7 +4,7 @@ class CreateImages < ActiveRecord::Migration
       t.string :filename
       t.string :alt
       t.string :caption
-
+      t.string :name
       t.timestamps null: false
     end
   end
